@@ -1,0 +1,30 @@
+# Maven
+target/
+*.jar
+*.war
+!.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+
+# Build
+*.class
+*.classpath
+*.project
+*.settings/
+
+# Spring Boot
+spring-boot-*.jar

@@ -1,0 +1,71 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.rag.intelligence.framework.web;
+
+import com.rag.intelligence.framework.errorcode.BaseErrorCode;
+import com.rag.intelligence.framework.exception.ServiceException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+/**
+ * SSE（Server-Sent Events）发送器封装类
+ */
+@Slf4j
+public class SseEmitterSender {
+
+    private final SseEmitter emitter;
+    private final AtomicBoolean closed = new AtomicBoolean(false);
+
+    public SseEmitterSender(SseEmitter emitter) {
+        this.emitter = emitter;
+    }
+
+    public void sendEvent(String eventName, Object data) {
+        if (closed.get()) {
+            throw new ServiceException("SSE already closed", BaseErrorCode.SERVICE_ERROR);
+        }
+        try {
+            if (eventName == null) {
+                emitter.send(data);
+                return;
+            }
+            emitter.send(SseEmitter.event().name(eventName).data(data));
+        } catch (Exception e) {
+            fail(e);
+        }
+    }
+
+    public void complete() {
+        if (closed.compareAndSet(false, true)) {
+            emitter.complete();
+        }
+    }
+
+    public void fail(Throwable throwable) {
+        closeWithError(throwable);
+        log.warn("SSE send failed", throwable);
+    }
+
+    private void closeWithError(Throwable throwable) {
+        if (closed.compareAndSet(false, true)) {
+            emitter.completeWithError(throwable);
+        }
+    }
+}
