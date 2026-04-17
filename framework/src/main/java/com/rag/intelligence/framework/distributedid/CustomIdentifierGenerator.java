@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.framework.distributedid;
+package com.nageoffer.ai.ragent.framework.distributedid;
 
 import cn.hutool.core.util.IdUtil;
 import com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator;
@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * 自定义 ID 生成器
+ * 基于 Hutool 的 Snowflake 算法，替换 MyBatisPlus 默认的分布式 ID 生成策略
  */
 @Component
 public class CustomIdentifierGenerator implements IdentifierGenerator {

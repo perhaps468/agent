@@ -17,21 +17,37 @@
 
 package com.nageoffer.ai.ragent.framework.config;
 
-import com.nageoffer.ai.ragent.framework.web.GlobalExceptionHandler;
+import com.baomidou.mybatisplus.annotation.DbType;
+import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
+import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import com.nageoffer.ai.ragent.framework.database.MyMetaObjectHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 /**
- * Web 组件自动装配
+ * 数据库持久层配置类
+ * 配置 MyBatis-Plus 相关分页插件等
  */
 @Configuration
-public class WebAutoConfiguration {
+public class DataBaseConfiguration {
 
     /**
-     * 构建全局异常拦截器组件 Bean
+     * MyBatis-Plus PostgreSQL 分页插件
      */
     @Bean
-    public GlobalExceptionHandler globalExceptionHandler() {
-        return new GlobalExceptionHandler();
+    public MybatisPlusInterceptor mybatisPlusInterceptor() {
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.POSTGRE_SQL));
+        return interceptor;
+    }
+
+    /**
+     * MyBatis-Plus 源数据自动填充类
+     */
+    @Bean
+    public MetaObjectHandler myMetaObjectHandler() {
+        return new MyMetaObjectHandler();
     }
 }
