@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.nageoffer.ai.ragent.rag.controller.vo;
+package com.rag.intelligence.rag.controller.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

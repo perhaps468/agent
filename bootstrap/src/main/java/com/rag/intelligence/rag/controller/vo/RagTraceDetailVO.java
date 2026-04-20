@@ -15,18 +15,21 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.request;
+package com.rag.intelligence.rag.controller.vo;
 
+import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 /**
- * 会话更新请求类
+ * RAG Trace 详情
  */
 @Data
-public class ConversationUpdateRequest {
+@Builder
+public class RagTraceDetailVO {
 
-    /**
-     * 会话标题
-     */
-    private String title;
+    private RagTraceRunVO run;
+
+    private List<RagTraceNodeVO> nodes;
 }

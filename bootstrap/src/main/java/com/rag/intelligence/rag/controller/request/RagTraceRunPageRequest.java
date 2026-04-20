@@ -17,16 +17,20 @@
 
 package com.rag.intelligence.rag.controller.request;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 
 /**
- * 会话更新请求类
+ * RAG Trace 运行记录分页请求
  */
 @Data
-public class ConversationUpdateRequest {
+public class RagTraceRunPageRequest extends Page {
 
-    /**
-     * 会话标题
-     */
-    private String title;
+    private String traceId;
+
+    private String conversationId;
+
+    private String taskId;
+
+    private String status;
 }

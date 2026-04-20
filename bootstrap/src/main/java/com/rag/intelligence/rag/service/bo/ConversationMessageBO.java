@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package com.nageoffer.ai.ragent.rag.service.bo;
+package com.rag.intelligence.rag.service.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

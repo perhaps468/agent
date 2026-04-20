@@ -15,18 +15,28 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.request;
+package com.rag.intelligence.rag.controller.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
- * 会话更新请求类
+ * 示例问题视图对象
  */
 @Data
-public class ConversationUpdateRequest {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class SampleQuestionVO {
 
-    /**
-     * 会话标题
-     */
+    private String id;
     private String title;
+    private String description;
+    private String question;
+    private Date createTime;
+    private Date updateTime;
 }

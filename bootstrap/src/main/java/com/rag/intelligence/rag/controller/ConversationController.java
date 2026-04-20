@@ -15,17 +15,17 @@
  * limitations under the License.
  */
 
-package com.nageoffer.ai.ragent.rag.controller;
+package com.rag.intelligence.rag.controller;
 
-import com.nageoffer.ai.ragent.rag.controller.request.ConversationUpdateRequest;
-import com.nageoffer.ai.ragent.rag.controller.vo.ConversationMessageVO;
-import com.nageoffer.ai.ragent.rag.controller.vo.ConversationVO;
-import com.nageoffer.ai.ragent.framework.context.UserContext;
-import com.nageoffer.ai.ragent.framework.convention.Result;
-import com.nageoffer.ai.ragent.framework.web.Results;
-import com.nageoffer.ai.ragent.rag.enums.ConversationMessageOrder;
-import com.nageoffer.ai.ragent.rag.service.ConversationMessageService;
-import com.nageoffer.ai.ragent.rag.service.ConversationService;
+import com.rag.intelligence.rag.controller.request.ConversationUpdateRequest;
+import com.rag.intelligence.rag.controller.vo.ConversationMessageVO;
+import com.rag.intelligence.rag.controller.vo.ConversationVO;
+import com.rag.intelligence.framework.context.UserContext;
+import com.rag.intelligence.framework.convention.Result;
+import com.rag.intelligence.framework.web.Results;
+import com.rag.intelligence.rag.enums.ConversationMessageOrder;
+import com.rag.intelligence.rag.service.ConversationMessageService;
+import com.rag.intelligence.rag.service.ConversationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

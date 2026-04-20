@@ -15,18 +15,24 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.request;
+package com.rag.intelligence.rag.service;
 
-import lombok.Data;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.rag.intelligence.rag.controller.request.RagTraceRunPageRequest;
+import com.rag.intelligence.rag.controller.vo.RagTraceDetailVO;
+import com.rag.intelligence.rag.controller.vo.RagTraceNodeVO;
+import com.rag.intelligence.rag.controller.vo.RagTraceRunVO;
+
+import java.util.List;
 
 /**
- * 会话更新请求类
+ * RAG Trace 查询服务
  */
-@Data
-public class ConversationUpdateRequest {
+public interface RagTraceQueryService {
 
-    /**
-     * 会话标题
-     */
-    private String title;
+    IPage<RagTraceRunVO> pageRuns(RagTraceRunPageRequest request);
+
+    RagTraceDetailVO detail(String traceId);
+
+    List<RagTraceNodeVO> listNodes(String traceId);
 }

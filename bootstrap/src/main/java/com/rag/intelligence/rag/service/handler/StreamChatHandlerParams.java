@@ -15,61 +15,55 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.vo;
+package com.rag.intelligence.rag.service.handler;
 
-import lombok.AllArgsConstructor;
+import com.rag.intelligence.infra.config.AIModelProperties;
+import com.rag.intelligence.rag.core.memory.ConversationMemoryService;
+import com.rag.intelligence.rag.service.ConversationGroupService;
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.util.Date;
+import lombok.Getter;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
- * 会话消息视图对象
+ * StreamChatEventHandler 构建参数
+ * 使用参数对象模式，将多个参数封装成一个对象
  */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
 @Builder
-public class ConversationMessageVO {
+public class StreamChatHandlerParams {
 
     /**
-     * 消息ID
+     * SSE 发射器
      */
-    private String id;
+    private final SseEmitter emitter;
 
     /**
      * 会话ID
      */
-    private String conversationId;
+    private final String conversationId;
 
     /**
-     * 角色 (如: user, assistant)
+     * 任务ID
      */
-    private String role;
+    private final String taskId;
 
     /**
-     * 消息内容
+     * 模型配置
      */
-    private String content;
+    private final AIModelProperties modelProperties;
 
     /**
-     * 深度思考内容
+     * 记忆服务
      */
-    private String thinkingContent;
+    private final ConversationMemoryService memoryService;
 
     /**
-     * 深度思考耗时（秒）
+     * 会话组服务
      */
-    private Integer thinkingDuration;
+    private final ConversationGroupService conversationGroupService;
 
     /**
-     * 反馈值：1=点赞，-1=点踩，null=未反馈
+     * 任务管理器
      */
-    private Integer vote;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
+    private final StreamTaskManager taskManager;
 }

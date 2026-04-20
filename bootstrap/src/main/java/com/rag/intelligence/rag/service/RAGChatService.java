@@ -15,18 +15,30 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.request;
+package com.rag.intelligence.rag.service;
 
-import lombok.Data;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
- * 会话更新请求类
+ * RAG 对话服务接口
+ * 对外暴露流式问答与任务停止能力，屏蔽控制器层之外的实现细节
  */
-@Data
-public class ConversationUpdateRequest {
+public interface RAGChatService {
 
     /**
-     * 会话标题
+     * 发起一次 SSE 流式问答
+     *
+     * @param question       用户问题
+     * @param conversationId 会话 ID（可选，空时创建新会话）
+     * @param deepThinking   是否开启深度思考模式
+     * @param emitter        SSE 发射器
      */
-    private String title;
+    void streamChat(String question, String conversationId, Boolean deepThinking, SseEmitter emitter);
+
+    /**
+     * 停止指定任务 ID 的流式会话
+     *
+     * @param taskId 任务 ID
+     */
+    void stopTask(String taskId);
 }

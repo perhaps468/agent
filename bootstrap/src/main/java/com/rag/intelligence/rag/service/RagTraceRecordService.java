@@ -15,18 +15,23 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.request;
+package com.rag.intelligence.rag.service;
 
-import lombok.Data;
+import com.rag.intelligence.rag.dao.entity.RagTraceNodeDO;
+import com.rag.intelligence.rag.dao.entity.RagTraceRunDO;
+
+import java.util.Date;
 
 /**
- * 会话更新请求类
+ * RAG Trace 记录服务
  */
-@Data
-public class ConversationUpdateRequest {
+public interface RagTraceRecordService {
 
-    /**
-     * 会话标题
-     */
-    private String title;
+    void startRun(RagTraceRunDO run);
+
+    void finishRun(String traceId, String status, String errorMessage, Date endTime, long durationMs);
+
+    void startNode(RagTraceNodeDO node);
+
+    void finishNode(String traceId, String nodeId, String status, String errorMessage, Date endTime, long durationMs);
 }

@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-package com.nageoffer.ai.ragent.rag.service;
+package com.rag.intelligence.rag.service;
 
-import com.nageoffer.ai.ragent.rag.controller.request.ConversationCreateRequest;
-import com.nageoffer.ai.ragent.rag.controller.request.ConversationUpdateRequest;
-import com.nageoffer.ai.ragent.rag.controller.vo.ConversationVO;
+import com.rag.intelligence.rag.controller.request.ConversationCreateRequest;
+import com.rag.intelligence.rag.controller.request.ConversationUpdateRequest;
+import com.rag.intelligence.rag.controller.vo.ConversationVO;
 
 import java.util.List;
 

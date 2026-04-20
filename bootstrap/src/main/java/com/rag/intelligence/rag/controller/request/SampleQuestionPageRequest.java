@@ -17,16 +17,17 @@
 
 package com.rag.intelligence.rag.controller.request;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.Data;
 
 /**
- * 会话更新请求类
+ * 示例问题分页查询请求
  */
 @Data
-public class ConversationUpdateRequest {
+public class SampleQuestionPageRequest extends Page {
 
     /**
-     * 会话标题
+     * 关键词（支持匹配标题、描述、问题内容）
      */
-    private String title;
+    private String keyword;
 }

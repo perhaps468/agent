@@ -15,61 +15,38 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.controller.vo;
+package com.rag.intelligence.rag.service;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.rag.intelligence.rag.controller.request.QueryTermMappingCreateRequest;
+import com.rag.intelligence.rag.controller.request.QueryTermMappingPageRequest;
+import com.rag.intelligence.rag.controller.request.QueryTermMappingUpdateRequest;
+import com.rag.intelligence.rag.controller.vo.QueryTermMappingVO;
 
-import java.util.Date;
-
-/**
- * 会话消息视图对象
- */
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class ConversationMessageVO {
+public interface QueryTermMappingAdminService {
 
     /**
-     * 消息ID
+     * 创建映射规则
      */
-    private String id;
+    String create(QueryTermMappingCreateRequest requestParam);
 
     /**
-     * 会话ID
+     * 更新映射规则
      */
-    private String conversationId;
+    void update(String id, QueryTermMappingUpdateRequest requestParam);
 
     /**
-     * 角色 (如: user, assistant)
+     * 删除映射规则
      */
-    private String role;
+    void delete(String id);
 
     /**
-     * 消息内容
+     * 查询映射规则详情
      */
-    private String content;
+    QueryTermMappingVO queryById(String id);
 
     /**
-     * 深度思考内容
+     * 分页查询映射规则
      */
-    private String thinkingContent;
-
-    /**
-     * 深度思考耗时（秒）
-     */
-    private Integer thinkingDuration;
-
-    /**
-     * 反馈值：1=点赞，-1=点踩，null=未反馈
-     */
-    private Integer vote;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
+    IPage<QueryTermMappingVO> pageQuery(QueryTermMappingPageRequest requestParam);
 }
