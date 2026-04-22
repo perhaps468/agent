@@ -31,15 +31,15 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * 会话消息实体类
- * 用于存储对话过程中的消息记录
+ * 会话消息反馈实体类
+ * 用于存储用户对助手消息的点赞/踩反馈
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@TableName("t_message")
-public class ConversationMessageDO {
+@TableName("t_message_feedback")
+public class MessageFeedbackDO {
 
     /**
      * 主键 ID，采用雪花算法生成
@@ -48,36 +48,34 @@ public class ConversationMessageDO {
     private String id;
 
     /**
-     * 会话 ID，关联到具体的对话会话
+     * 消息 ID，关联到会话消息
+     */
+    private String messageId;
+
+    /**
+     * 会话 ID
      */
     private String conversationId;
 
     /**
-     * 用户 ID，标识消息发送者
+     * 用户 ID
      */
     private String userId;
 
     /**
-     * 角色：user/assistant
-     * user: 用户消息
-     * assistant: 助手回复
+     * 反馈值：1=点赞，-1=点踩
      */
-    private String role;
+    private Integer vote;
 
     /**
-     * 消息内容，存储实际的消息文本
+     * 反馈原因（可选）
      */
-    private String content;
+    private String reason;
 
     /**
-     * 深度思考内容
+     * 补充说明（可选）
      */
-    private String thinkingContent;
-
-    /**
-     * 深度思考耗时（秒）
-     */
-    private Integer thinkingDuration;
+    private String comment;
 
     /**
      * 创建时间，自动填充

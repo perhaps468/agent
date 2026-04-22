@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-package com.nageoffer.ai.ragent.rag.dao.mapper;
+package com.rag.intelligence.rag.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.nageoffer.ai.ragent.rag.dao.entity.ConversationSummaryDO;
+import com.rag.intelligence.rag.dao.entity.ConversationSummaryDO;
 
 public interface ConversationSummaryMapper extends BaseMapper<ConversationSummaryDO> {
 }

@@ -15,10 +15,25 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.dao.mapper;
+package com.rag.intelligence.rag.dto;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rag.intelligence.rag.dao.entity.ConversationMessageDO;
+/**
+ * 消息增量记录类
+ * 用于表示消息的类型和增量数据
+ */
+public record MessageDelta(String type, String delta) {
 
-public interface ConversationMessageMapper extends BaseMapper<ConversationMessageDO> {
+    /**
+     * 消息类型
+     */
+    public String type() {
+        return type;
+    }
+
+    /**
+     * 增量数据
+     */
+    public String delta() {
+        return delta;
+    }
 }

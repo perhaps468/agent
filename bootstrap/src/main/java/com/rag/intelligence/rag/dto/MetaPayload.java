@@ -15,10 +15,7 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.dao.mapper;
+package com.rag.intelligence.rag.dto;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rag.intelligence.rag.dao.entity.ConversationMessageDO;
-
-public interface ConversationMessageMapper extends BaseMapper<ConversationMessageDO> {
+public record MetaPayload(String conversationId, String taskId) {
 }

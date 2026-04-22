@@ -15,45 +15,55 @@
  * limitations under the License.
  */
 
-package com.rag.intelligence.rag.dao.entity;
+package com.rag.intelligence.rag.mq.event;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.io.Serial;
+import java.io.Serializable;
 
+/**
+ * 消息点赞/点踩反馈事件
+ */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@TableName("t_conversation")
-public class ConversationDO {
+public class MessageFeedbackEvent implements Serializable {
 
-    @TableId(type = IdType.ASSIGN_ID)
-    private String id;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-    private String conversationId;
+    /**
+     * 消息ID
+     */
+    private String messageId;
 
+    /**
+     * 用户ID
+     */
     private String userId;
 
-    private String title;
+    /**
+     * 反馈值：1=点赞，-1=点踩
+     */
+    private Integer vote;
 
-    private Date lastTime;
+    /**
+     * 反馈原因（可选）
+     */
+    private String reason;
 
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    /**
+     * 补充说明（可选）
+     */
+    private String comment;
 
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
-
-    @TableLogic
-    private Integer deleted;
+    /**
+     * 用户提交时间戳（毫秒），用于多节点消费时保证最终一致性
+     */
+    private long submitTime;
 }

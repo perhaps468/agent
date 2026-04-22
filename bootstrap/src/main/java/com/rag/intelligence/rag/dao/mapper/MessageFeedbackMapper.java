@@ -18,7 +18,7 @@
 package com.rag.intelligence.rag.dao.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.rag.intelligence.rag.dao.entity.ConversationMessageDO;
+import com.rag.intelligence.rag.dao.entity.MessageFeedbackDO;
 
-public interface ConversationMessageMapper extends BaseMapper<ConversationMessageDO> {
+public interface MessageFeedbackMapper extends BaseMapper<MessageFeedbackDO> {
 }
